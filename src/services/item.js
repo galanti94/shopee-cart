@@ -1,9 +1,16 @@
 async function createItem(name, price, quantity) {
+    let currentQuantity = quantity;
+
     return {
         name,
         price,
-        quantity,
-        subtotal: () => price * quantity
+        get quantity() {
+            return currentQuantity;
+        },
+        set quantity(newQuantity) {
+            currentQuantity = newQuantity;
+        },
+        subtotal: () => price * currentQuantity
     };
 }
 

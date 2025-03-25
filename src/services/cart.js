@@ -4,18 +4,25 @@ async function addItem(userCart, item) {
 }
 
 async function deleteItem(userCart, index) {
-    
+    userCart.splice(index, 1);
+    console.log('Item deleted');
 }
 
-async function removeItem(userCart, index) {
-    if (index < 0 || index >= userCart.length) {
-        console.log("Index out of scope");
+async function removeItem(userCart, item) {
+    const indexFound = userCart.findIndex((product) => product.name === item.name);
+
+    if (indexFound === -1) {
+        console.log(`Item not found`);
         return;
     }
 
-    const removeIndex = index - 1;
+    if (userCart[indexFound].quantity <=1) {
+        await deleteItem(userCart, indexFound);
+        return;
+    }
 
-    userCart.splice(removeIndex, 1);
+    userCart[indexFound].quantity--;
+    console.log(`One quantity removed`);
 }
 
 async function calculateTotal(userCart) {
