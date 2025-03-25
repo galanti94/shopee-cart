@@ -3,7 +3,8 @@ import {
     addItem,
     removeItem,
     deleteItem,
-    calculateTotal
+    calculateTotal,
+    displayCart,
 } from "./services/cart.js"
 
 const cart = [];
@@ -16,6 +17,7 @@ const item2 = await createItem('hotwheels lamborghini', 39.99, 3);
 await addItem(cart, item1);
 await addItem(cart, item2);
 
-await calculateTotal(cart);
+await removeItem(cart, 1);
 
-console.log();
+await displayCart(cart);
+
